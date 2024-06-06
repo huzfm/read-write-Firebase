@@ -5,14 +5,20 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Post Your Ad</title>
-      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="ad_post.css">
       
 </head>
 
 <body>
+    
+      <div class="bg-image-container">
+            <div class="bg-image"></div>
+          </div>
+
+
       <div class="box">
             <div class="form">
-                  <h2>Post your Ad</h2>
+                  <h2 id="heading">Post your Ad</h2>
                   <form id="userForm">
                         <div class="inputbox">
                               <input type="text" id="name" required placeholder="Name">
@@ -35,7 +41,7 @@
                               
                         </div>
                         <div class="inputbox">
-                              <input type="file" id="photos" accept="image/*" multiple required>
+                              <input type="file"  id="photos" accept="image/*" multiple required >
                               
                         </div>
                         <input type="submit" value="Submit" class="sub" id="submit">

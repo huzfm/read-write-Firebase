@@ -1,10 +1,60 @@
 /* style.css */
 
+
+.bg-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Set a lower z-index to place behind video */
+  }
+  .bg-image {
+    background-image: url("1.jpg"); /* Replace with your image path */
+    background-size: cover; /* Stretch image to cover the entire container */
+    background-position: center; /* Center the image */
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Styles for video  */
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1; /* Set a higher z-index to place on top of image */
+  }
+  .video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* Stretch video to fill container */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      /* background-color: #f0f0f0; */
+    
   }
   
   .box {
@@ -15,7 +65,7 @@ body {
   }
   
   .form {
-      background-color: #fff;
+      background-color: transparent;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
@@ -63,7 +113,7 @@ body {
       font-size: 16px;
       border: none;
       background-color: #007bff;
-      color: #fff;
+      /* color: #fff; */
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s;
@@ -78,16 +128,13 @@ body {
       text-align: center;
       margin-top: 10px;
   }
-  /* index.css */
-
-/* General styles */
-body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-  }
-  
+#heading{
+    color: black;
+    font-weight: 1000;
+    font-style: italic;
+    text-decoration: dashed;
+    
+}
   .box {
       display: flex;
       justify-content: center;
@@ -96,7 +143,7 @@ body {
   }
   
   .form {
-      background-color: #fff;
+      background-color: transparent;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -106,6 +153,9 @@ body {
   
   h2 {
       margin-top: 0;
+      color: black;
+      text-decoration: dashed;
+
   }
   
   .inputbox {
@@ -115,9 +165,20 @@ body {
   .inputbox input {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 2px solid black;
       border-radius: 4px;
       box-sizing: border-box;
+      background-color: transparent;
+      text-align: center;
+      font-weight: 800;
+  }
+  ::placeholder{
+    color: black;
+    font-weight: 600;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
   }
   
   .inputbox span {
@@ -126,17 +187,21 @@ body {
   }
   
   .sub {
-      background-color: #4caf50;
-      color: #fff;
+      background-color: grey;
+      color: black;
       border: none;
       padding: 10px 20px;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 20px;
+      font-weight: 600;
   }
   
+  
   .sub:hover {
-      background-color: #45a049;
+      background-color: black;
+      color: white;
+     
   }
   
   #error-message {

@@ -1,0 +1,331 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure preloader is displayed above other elements */
+  color: black;
+}
+
+/* Add loader animation (example using spinner) */
+.preloader:before {
+  content: "";
+  display: block;
+  margin: 80px auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  border-top-color: transparent; /* Creates a spinning effect */
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* User Container */
+.user-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+  justify-content: space-between; /* Distribute items evenly */
+  margin-top: 20px;
+}
+
+/* User Information */
+.user-info {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 30%; /* Set width for each user info box */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.user-info p {
+  margin-bottom: 5px;
+}
+
+/* Photo Container */
+#photo-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow photos to wrap onto multiple lines */
+  margin-top: 10px;
+}
+
+.user-photo {
+  width: 100px; /* Set width for each photo */
+  height: 100px; /* Set height for each photo */
+  margin: 5px;
+  object-fit: cover; /* Maintain aspect ratio and fill the space */
+}
+
+/* Header */
+header {
+  background-color: #f0f0f0;
+  padding: 10px 0;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
+
+/* Buttons */
+.button {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+
+
+button { 
+  color: black;
+  font-weight: 600;
+}
+button:hover { 
+  background-color: black;
+  color: white;
+}
+
+#nav-items {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.photo-container {
+  position: relative;
+  max-width: 300px;
+  /* Adjust maximum width as needed */
+  margin: auto;
+  overflow: hidden;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+  /* Add transition for smooth slide effect */
+}
+
+/* Add CSS styles for read more link */
+.read-more {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: blue;
+}
+.photo-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  /* Adjust height as needed */
+}
+
+.slide-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  /* Add cursor pointer for clickable images */
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  z-index: 100;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* Style for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add CSS styles for photo slideshow */
+.user-info {
+  display: inline-block;
+  /* Display user info containers as inline blocks */
+  width: calc(33.33% - 20px);
+  /* Set width to one-third of the container with margins */
+  margin: 10px;
+  /* Add margin between containers */
+  vertical-align: top;
+  /* Align containers to the top of the row */
+  box-sizing: border-box;
+  /* Include padding and borders in the width */
+}
+
+.photo-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  /* Adjust height as needed */
+}
+
+.slide-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-container img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  /* Add cursor pointer for clickable images */
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  z-index: 100;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* Style for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}

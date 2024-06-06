@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Post Your Ad</title>
+      <link rel="stylesheet" href="index.css">
+      
+</head>
+
+<body>
+      <div class="box">
+            <div class="form">
+                  <h2>Post your Ad</h2>
+                  <form id="userForm">
+                        <div class="inputbox">
+                              <input type="text" id="name" required placeholder="Name">
+                              
+                        </div>
+                        <div class="inputbox">
+                              <input type="email" id="email" required placeholder="E-mail">
+                              
+                        </div>
+                        <div class="inputbox">
+                              <input type="tel" id="phone" required placeholder="Phone Number">
+                              
+                        </div>
+                        <div class="inputbox">
+                              <input type="text" id="address" required placeholder="Address">
+                              
+                        </div>
+                        <div class="inputbox">
+                              <input type="text" id="details" required placeholder="Details">
+                              
+                        </div>
+                        <div class="inputbox">
+                              <input type="file" id="photos" accept="image/*" multiple required>
+                              
+                        </div>
+                        <input type="submit" value="Submit" class="sub" id="submit">
+                  </form>
+                  <div id="error-message"></div>
+            </div>
+      </div>
+      <div id="loader" style="display: none;"></div>
+
+
+      <script type="module">
+            // Firebase imports and configuration...
+            // Firebase imports
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+            import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+            import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+
+            // Firebase configuration
+            const firebaseConfig = {
+                  // Your Firebase configuration
+                  apiKey: "AIzaSyAncrgTyzpO9H6t2klqMrRiCTI5lxr2AIk",
+                  authDomain: "crud-bcb43.firebaseapp.com",
+                  projectId: "crud-bcb43",
+                  storageBucket: "crud-bcb43.appspot.com",
+                  messagingSenderId: "296883086573",
+                  appId: "1:296883086573:web:a9ca0f15d24e39bfa498e4"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+            const storage = getStorage(app);
+
+            // Function definitions
+            const userForm = document.getElementById('userForm');
+            const errorMessage = document.getElementById('error-message');
+            const loader = document.getElementById('loader');
+            const popup = document.getElementById('popup');
+
+            userForm.addEventListener('submit', async function (e) {
+                  e.preventDefault();
+                  loader.style.display = 'block';
+
+                  const name = document.getElementById("name").value.trim();
+                  const email = document.getElementById("email").value.trim();
+                  const phone = document.getElementById("phone").value.trim();
+                  const address = document.getElementById("address").value.trim();
+                  const details = document.getElementById("details").value.trim();
+                  const photos = document.getElementById("photos").files;
+
+                  if (!/^\d+$/.test(phone)) {
+                        showError("Please enter a valid phone number");
+                        loader.style.display = 'none';
+                        return;
+                  }
+
+                  const userData = {
+                        phone,
+                        email,
+                        name,
+                        address,
+                        details,
+                        photoURLs: []
+                  };
+
+                  try {
+                        await Promise.all([...photos].map(async (photo, i) => {
+                              const photoStorageRef = storageRef(storage, `photos/${name}_${Date.now()}_${i}`);
+                              const snapshot = await uploadBytes(photoStorageRef, photo);
+                              const downloadURL = await getDownloadURL(snapshot.ref);
+                              userData.photoURLs.push(downloadURL);
+                        }));
+
+                        await saveUserData(userData);
+                        loader.style.display = 'none';
+                        console.log(userData);
+                        alert("data saved sucessfully")
+                        userForm.reset();
+                  } catch (error) {
+                        showError("Error: " + error.message);
+                        loader.style.display = 'none';
+                  }
+            });
+
+            function saveUserData(userData) {
+                  return set(ref(db, 'user/' + userData.name), userData);
+            }
+
+            function showError(message) {
+                  errorMessage.textContent = message;
+            }
+
+
+      </script>
+</body>
+
+</html>

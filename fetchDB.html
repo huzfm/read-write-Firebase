@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Read Data</title>
+      <link rel="stylesheet" href="disp.css">
+      <script type="module">
+            // Import Firebase functions
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+            import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+            import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+
+            const firebaseConfig = {
+                  // Replace with your actual Firebase project configuration
+                  apiKey: "AIzaSyAncrgTyzpO9H6t2klqMrRiCTI5lxr2AIk",
+                  authDomain: "crud-bcb43.firebaseapp.com",
+                  projectId: "crud-bcb43",
+                  storageBucket: "crud-bcb43.appspot.com",
+                  messagingSenderId: "296883086573",
+                  appId: "1:296883086573:web:a9ca0f15d24e39bfa498e4"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+            const userRef = ref(db, 'user'); // Reference to your user data
+            const storage = getStorage(app);
+
+            const userContainer = document.getElementById('user-container');
+
+            onValue(userRef, (snapshot) => {
+                  const data = snapshot.val();
+                  if (data) {
+                        userContainer.innerHTML = ''; // Clear previous data before appending new data
+                        Object.keys(data).forEach(userId => {
+                              const userData = data[userId];
+                              const name = userData.name; // Changed from username to name
+                              const email = userData.email;
+                              const phone = userData.phone;
+                              const address = userData.address;
+                              const details = userData.details;
+
+                              const userDiv = document.createElement('div');
+                              userDiv.classList.add('user-info');
+                              userDiv.innerHTML = `
+            <p>Name: ${name}</p> <!-- Changed from Username to Name -->
+            <p>Email: ${email}</p>
+            <p>Phone: ${phone ? phone : "Not Available"}</p>
+            <p>Address: ${address}</p> <!-- Corrected the casing -->
+            <p>Details: ${details}</p> <!-- Corrected the casing -->
+            <div id="photo-container"></div>
+          `;
+
+                              // Logic to fetch and display photos
+                              const photoContainer = userDiv.querySelector('#photo-container');
+                              if (userData.photoURLs) {
+                                    userData.photoURLs.forEach(photoURL => {
+                                          const img = document.createElement('img');
+                                          img.src = photoURL;
+                                          img.classList.add('user-photo'); // Optional class for styling
+                                          photoContainer.appendChild(img);
+                                    });
+                              } else {
+                                    photoContainer.textContent = 'No photos available';
+                              }
+
+                              userContainer.appendChild(userDiv);
+                        });
+                  } else {
+                        console.log("No data found");
+                  }
+            });
+      </script>
+</head>
+
+<body>
+
+      <header>
+            <section id="header-container">
+                  <nav>
+                        <button href="" id="nav-items"> My Ads</button>
+                        <button href="index.html" id="nav-items">Sell</button>
+                  </nav>
+            </section>
+      </header>
+
+      <div id="user-container"></div>
+
+</body>
+
+</html>

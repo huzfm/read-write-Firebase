@@ -6,43 +6,45 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Post Your Ad</title>
       <link rel="stylesheet" href="ad_post.css">
-      
+      <style>
+          
+      </style>
 </head>
 
+
 <body>
-    
-      <div class="bg-image-container">
-            <div class="bg-image"></div>
-          </div>
+<nav>
+      <a id="read" href="./fetchDB.html">Read Data</a>
+</nav>
 
 
       <div class="box">
+            <video autoplay loop muted plays-inline class="bg-clip">
+                  <source src="./assets/bg.mp4">
+            </video>
             <div class="form">
-                  <h2 id="heading">Post your Ad</h2>
+                  <h2 id="heading">Please enter your details</h2>
                   <form id="userForm">
                         <div class="inputbox">
                               <input type="text" id="name" required placeholder="Name">
-                              
+
                         </div>
                         <div class="inputbox">
                               <input type="email" id="email" required placeholder="E-mail">
-                              
+
                         </div>
                         <div class="inputbox">
-                              <input type="tel" id="phone" required placeholder="Phone Number">
-                              
+                              <input type="tel" id="phone" required placeholder="Phone Number" maxlength="10"
+                                    minlength="10">
+
                         </div>
                         <div class="inputbox">
                               <input type="text" id="address" required placeholder="Address">
-                              
+
                         </div>
                         <div class="inputbox">
-                              <input type="text" id="details" required placeholder="Details">
-                              
-                        </div>
-                        <div class="inputbox">
-                              <input type="file"  id="photos" accept="image/*" multiple required >
-                              
+                              <input type="file" id="photos" accept="image/*" multiple required>
+
                         </div>
                         <input type="submit" value="Submit" class="sub" id="submit">
                   </form>
@@ -61,13 +63,8 @@
 
             // Firebase configuration
             const firebaseConfig = {
-                  // Your Firebase configuration
-                  apiKey: "AIzaSyAncrgTyzpO9H6t2klqMrRiCTI5lxr2AIk",
-                  authDomain: "crud-bcb43.firebaseapp.com",
-                  projectId: "crud-bcb43",
-                  storageBucket: "crud-bcb43.appspot.com",
-                  messagingSenderId: "296883086573",
-                  appId: "1:296883086573:web:a9ca0f15d24e39bfa498e4"
+                  // Replace with our Firebase configuration
+               
             };
 
             // Initialize Firebase
@@ -89,21 +86,16 @@
                   const email = document.getElementById("email").value.trim();
                   const phone = document.getElementById("phone").value.trim();
                   const address = document.getElementById("address").value.trim();
-                  const details = document.getElementById("details").value.trim();
+                 
                   const photos = document.getElementById("photos").files;
 
-                  if (!/^\d+$/.test(phone)) {
-                        showError("Please enter a valid phone number");
-                        loader.style.display = 'none';
-                        return;
-                  }
+
 
                   const userData = {
                         phone,
                         email,
                         name,
                         address,
-                        details,
                         photoURLs: []
                   };
 
@@ -120,6 +112,7 @@
                         console.log(userData);
                         alert("data saved sucessfully")
                         userForm.reset();
+                        window.location.href     ='./fetchDB.html'
                   } catch (error) {
                         showError("Error: " + error.message);
                         loader.style.display = 'none';

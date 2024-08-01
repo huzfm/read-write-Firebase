@@ -13,8 +13,8 @@
       <header>
             <section id="header-container">
                   <nav>
-                        <a href="" id="nav-items">My Ads</a>
-                        <a href="ad_post.html" id="nav-items">Sell</a>
+                       
+                        <a href="ad_post.html" id="nav-items">Write Data</a>
                   </nav>
             </section>
       </header>
@@ -36,12 +36,6 @@
 
             const firebaseConfig = {
                   // Replace with your actual Firebase project configuration
-                  apiKey: "AIzaSyAncrgTyzpO9H6t2klqMrRiCTI5lxr2AIk",
-                  authDomain: "crud-bcb43.firebaseapp.com",
-                  projectId: "crud-bcb43",
-                  storageBucket: "crud-bcb43.appspot.com",
-                  messagingSenderId: "296883086573",
-                  appId: "1:296883086573:web:a9ca0f15d24e39bfa498e4"
             };
 
             const app = initializeApp(firebaseConfig);
@@ -61,7 +55,6 @@
                               const email = userData.email;
                               const phone = userData.phone;
                               const address = userData.address;
-                              const details = userData.details;
                               const photoURLs = userData.photoURLs;
 
                               const userDiv = document.createElement('div');
@@ -138,7 +131,7 @@
                         <p><strong>Email:</strong> ${email}</p>
                         <p><strong>Phone:</strong> ${phone ? phone : "Not Available"}</p>
                         <p><strong>Address:</strong> ${address}</p>
-                        <p><strong>Details:</strong> ${details}</p>
+                        
                     `;
                               userDiv.appendChild(userDetails);
 

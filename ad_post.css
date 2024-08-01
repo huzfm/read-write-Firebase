@@ -11,32 +11,14 @@
     z-index: -1; /* Set a lower z-index to place behind video */
   }
   .bg-image {
-    background-image: url("1.jpg"); /* Replace with your image path */
+    background-image: url("./assets/bg.mp4"); /* Replace with your image path */
     background-size: cover; /* Stretch image to cover the entire container */
     background-position: center; /* Center the image */
     width: 100%;
     height: 100%;
   }
 
-  /* Styles for video  */
-  .video-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 1; /* Set a higher z-index to place on top of image */
-  }
-  .video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover; /* Stretch video to fill container */
-  }
+
 
 
 
@@ -173,8 +155,8 @@ body {
       font-weight: 800;
   }
   ::placeholder{
-    color: black;
-    font-weight: 600;
+    color: white;
+    font-weight: 200;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -252,3 +234,33 @@ body {
           transform: rotate(360deg);
     }
 }  
+
+.bg-clip {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.form{
+    
+    backdrop-filter: blur(100px);
+}
+#read{
+    display: flex;
+    float: right;
+    padding: 10px;
+    font-weight: 600;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    z-index: 100000;
+    background-color: white;
+    font-style: none;
+    color: black;
+    font-style: normal;
+}
+#read:hover{
+    background-color: black;
+    color: white;
+    transition: 0.2s ease-in-out;
+}
